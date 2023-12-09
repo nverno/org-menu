@@ -1,4 +1,4 @@
-;;; org-menu-tests.el --- Tests for org-menu
+;;; org-menu-tests.el --- Tests for org-menu  -*- lexical-binding: t; -*-
 ;;
 ;; Copyright 2021 Jan Rehders
 ;;

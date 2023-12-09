@@ -156,7 +156,7 @@ function to be used to cycle visibility of current element."
   (interactive)
   (save-excursion
     (outline-hide-subtree)
-    (org-show-children 4)
+    (org-fold-show-children 4)
     (org-goto-first-child)
     (org-reveal '(4))))
 
@@ -177,7 +177,7 @@ function to be used to cycle visibility of current element."
     ("go" "overview" org-overview)
     ("gt" "content" (lambda () (interactive) (org-content org-menu-global-toc-depth)))
     ("ga" "all" org-show-all)
-    ("gd" "default" (lambda () (interactive) (org-set-startup-visibility)))]
+    ("gd" "default" (lambda () (interactive) (org-cycle-set-startup-visibility)))]
    ["Narrow"
     ("nn" "toggle" org-toggle-narrow-to-subtree)
     ("nb" "to block" org-narrow-to-block :if org-at-block-p)
@@ -582,7 +582,7 @@ Conditions have been adapted from `org-insert-link'"
   (or
    ;; Use variable from org-compat to support Emacs 26
    ;; this produces a warning in newer Emacs which we can't avoid
-   (org-in-regexp org-bracket-link-regexp 1)
+   (org-in-regexp org-link-bracket-re 1)
    (when (boundp 'org-link-angle-re)
      (org-in-regexp org-link-angle-re))
    (when (boundp 'org-link-plain-re)
@@ -695,7 +695,7 @@ Conditions have been adapted from `org-insert-link'"
 
 (transient-insert-suffix 'org-menu-archive (list 0)
   `["Archive"
-    ,@(org-menu-heading-navigate-items nil #'org-force-cycle-archived)
+    ,@(org-menu-heading-navigate-items nil #'org-cycle-force-archived)
     ["Archive to"
      ("t" "tree" org-archive-subtree :transient t)
      ("s" "sibling" org-archive-to-archive-sibling :transient t)
