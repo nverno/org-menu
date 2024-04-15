@@ -584,8 +584,8 @@ the point will be at end of region.  Will add spaces before/after text if
   "Will remove non-breaking space before/after point or insert it if none found."
   (interactive)
   (cond
-   ((looking-back "​")
-    (backward-delete-char 1))
+   ((looking-back "​" (line-beginning-position))
+    (delete-char 1))
    ((looking-at "​")
     (delete-char 1))
    (t
