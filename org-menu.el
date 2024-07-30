@@ -110,7 +110,7 @@ Conditions have been adapted from `org-insert-link'"
     (or
      ;; Use variable from org-compat to support Emacs 26
      ;; this produces a warning in newer Emacs which we can't avoid
-     (org-in-regexp org-bracket-link-regexp 1)
+     (org-in-regexp org-link-bracket-re 1)
      (when (boundp 'org-link-angle-re)
        (org-in-regexp org-link-angle-re))
      (when (boundp 'org-link-plain-re)
@@ -1018,8 +1018,10 @@ Code copied from lambda in org-colview.el after
      ("g" "go to" org-menu-goto)
      ("s" "search" org-menu-search-and-filter)
      ("o" "options" org-menu-options)
-     ("C" "clock (active)" org-menu-clock :if org-clock-is-active)
-     ("C" "clock" org-menu-clock :if-not org-clock-is-active)
+     ("C" "clock (active)" org-menu-clock :if org-clock-is-active
+      :transient transient--do-replace)
+     ("C" "clock" org-menu-clock :if-not org-clock-is-active
+      :transient transient--do-replace)
      ,@(when (fboundp #'org-capture-finalize)
          (list '("C-c C-c" "confirm capture" org-capture-finalize :if-non-nil org-capture-mode)))
      ,@(when (fboundp #'org-capture-kill)
