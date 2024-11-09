@@ -717,6 +717,7 @@ Conditions have been adapted from `org-insert-link'"
   (interactive)
   (org-columns t))
 
+(declare-function org-agenda-do-context-action "org-agenda")
 (defun org-menu-columns-next ()
   "Move into the next row when org-columns is active.
 
